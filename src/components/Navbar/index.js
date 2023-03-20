@@ -49,7 +49,7 @@ function DrawerAppBar(props) {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar component="nav">
+      <AppBar component="nav" >
         <Toolbar>
           <IconButton
             color="inherit"
@@ -65,7 +65,7 @@ function DrawerAppBar(props) {
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
           >
-            MUI
+            FORM.
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
            <ul id='nav-list'>

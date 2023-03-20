@@ -2,8 +2,12 @@ import React, { useState } from 'react'
 import Stack from "@mui/material/Stack"
 import { Auth } from 'aws-amplify';
 import swal from 'sweetalert';
+import {useNavigate } from "react-router-dom"
 
 const Index = () => {
+
+    const navigate = useNavigate()
+
 
     const [userName, setUserName] = useState("")
     const [newPassword, setNewPassword] = useState("")
@@ -18,7 +22,7 @@ const Index = () => {
             console.log("getEmail", getEmail);
 
 
-            setUserName(getEmail)
+            setUserName(userName)
             setToggle(true)
 
             swal({
@@ -45,6 +49,10 @@ const Index = () => {
     const updatePassword = async (e) => {
         e.preventDefault()
 
+        console.log("UserName", userName);
+        console.log("code", code);
+        console.log("newPassword", newPassword);
+
         try {
             const updatePassword = await Auth.forgotPasswordSubmit(userName, code, newPassword);
             console.log("updatePassword", updatePassword);
@@ -56,13 +64,18 @@ const Index = () => {
             // })
             // .then((data) => console.log(data))
             // .catch((err) => console.log(err));
+            setNewPassword("")
+            setConfirmPassword("")
+             setCode("")
+             navigate("/signin")
+             
 
-            // swal({
-            //     title: "Password Successfully Updated",
-            //     icon: "success",
-            //     button: false,
-            //     timer: 3000,
-            // });
+            swal({
+                title: "Password Successfully Updated",
+                icon: "success",
+                button: false,
+                timer: 3000,
+            });
 
 
         } catch (error) {
